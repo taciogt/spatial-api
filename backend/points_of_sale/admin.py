@@ -6,4 +6,4 @@ from points_of_sale.models import PointOfSale
 
 @admin.register(PointOfSale)
 class PointOfSaleAdmin(OSMGeoAdmin):
-    list_display = ('trading_name', 'owner_name')
+    list_display = ('id', 'trading_name', 'owner_name')

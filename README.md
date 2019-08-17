@@ -1,5 +1,12 @@
 # Spatial Api
 
+Hipóteses assumidas:
+* Área de cobertura sempre será um multipolígono
+* Endereço sempre será um ponto
+* O json com os pontos iniciais para popular a base de dados não contém nenhum Multipolígono com mais de um polígono
+CNPJ
+* O número máximo de número de um CNPJ é 25
+* Apenas os caracteres númericos do CNPJ são relevantes, os outros são apenas uma máscara
 
 Install dependencies:
 Install GEOS:
