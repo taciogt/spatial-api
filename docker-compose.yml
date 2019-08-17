@@ -4,11 +4,13 @@ services:
 #    container_name: "spatial_web-app"
 #    build: .
 #    working_dir: /code/backend
-#    command: python3 manage.py runserver 0.0.0.0:8000
+#    command: ["./run_development_server.sh"]
 #    volumes:
 #      - .:/code
+#    depends_on:
+#      - database
   database:
-    container_name: "spatial_postgres"
+    container_name: "spatial_db"
     image: kartoza/postgis:9.6-2.4
     ports:
       - 5432:5432
