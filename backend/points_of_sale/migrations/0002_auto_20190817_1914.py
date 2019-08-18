@@ -4,6 +4,8 @@ import os
 from django.contrib.gis.geos import Polygon, MultiPolygon, Point
 from django.db import migrations
 
+from django.db import connection
+
 
 def _get_file_path(filename):
     initial_data_directory = os.path.join(os.path.dirname(__file__), 'data')
@@ -33,11 +35,19 @@ def load_initial_data(apps, _):
             point_of_sale.save()
 
 
+def update_primary_key_auto_increment(apps, _):
+    PointOfSale = apps.get_model('points_of_sale', 'PointOfSale')
+    table_name = PointOfSale._meta.db_table
+    with connection.cursor() as c:
+        c.execute(f"SELECT setval('{table_name}_id_seq', (SELECT MAX(id) from \"{table_name}\"));")
+
+
 class Migration(migrations.Migration):
     dependencies = [
         ('points_of_sale', '0001_initial'),
     ]
 
     operations = [
-        migrations.RunPython(load_initial_data)
+        migrations.RunPython(load_initial_data),
+        migrations.RunPython(update_primary_key_auto_increment),
     ]
