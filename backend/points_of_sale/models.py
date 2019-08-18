@@ -7,3 +7,10 @@ class PointOfSale(models.Model):
     document = models.CharField(max_length=25, null=False, blank=False)
     coverage_area = models.MultiPolygonField()
     address = models.PointField()
+
+    def to_dict(self):
+        return {
+            'trading_name': self.trading_name,
+            'owner_name': self.owner_name,
+            'document': self.document,
+        }
