@@ -4,6 +4,7 @@ ARG DEBIAN_FRONTEND=noninteractive
 
 RUN apt-get update && \
     apt-get install -qq binutils libproj-dev gdal-bin
+
 RUN mkdir /code
 WORKDIR /code
 ADD requirements.txt /code/

@@ -2,7 +2,7 @@
 
 
 echo "on wait for postgis"
-set -e
+set -x
 sleep 3
 
 
@@ -12,5 +12,8 @@ sleep 3
 #done
 
 >&2 echo "Postgres is up - executing command"
+pwd
+#cd backend
+ls
 python3 manage.py migrate
 python3 manage.py runserver 0.0.0.0:8000
