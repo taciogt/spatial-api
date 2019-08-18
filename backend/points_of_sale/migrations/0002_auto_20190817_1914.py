@@ -2,9 +2,8 @@ import json
 import os
 
 from django.contrib.gis.geos import Polygon, MultiPolygon, Point
-from django.db import migrations
-
 from django.db import connection
+from django.db import migrations
 
 
 def _get_file_path(filename):
