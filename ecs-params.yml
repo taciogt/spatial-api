@@ -1,0 +1,19 @@
+version: 1
+task_definition:
+  services:
+    wordpress:
+      cpu_shares: 100
+      mem_limit: 524288000
+    mysql:
+      cpu_shares: 100
+      mem_limit: 524288000
+
+#version: 1
+#task_definition:
+#  services:
+#    webapp:
+#      cpu_shares: 100
+#      mem_limit: 524288000
+#    database:
+#      cpu_shares: 100
+#      mem_limit: 524288000
