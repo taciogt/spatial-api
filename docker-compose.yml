@@ -7,6 +7,8 @@ services:
 #    command: ["./run_development_server.sh"]
 #    volumes:
 #      - .:/code
+#    ports:
+#      - 8000:8000
 #    depends_on:
 #      - database
   database:

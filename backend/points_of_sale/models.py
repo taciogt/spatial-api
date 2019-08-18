@@ -1,5 +1,4 @@
 from django.contrib.gis.db import models
-import json
 
 
 class PointOfSale(models.Model):
@@ -19,3 +18,6 @@ class PointOfSale(models.Model):
                 'y': self.address.y
             }
         }
+
+    def __str__(self):
+        return f'PointOfSale ({self.id}): {self.trading_name}'
