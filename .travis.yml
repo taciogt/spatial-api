@@ -5,6 +5,8 @@ python:
   - "3.7"
 addons:
   apt:
+    sources:
+      - sourceline: 'ppa:ubuntugis/ppa'
     packages:
 #    - geos
 #    - gdal
@@ -12,6 +14,7 @@ addons:
     - binutils
     - libproj-dev
     - gdal-bin
+    - libgdal-dev
 services:
   - docker
 install:
