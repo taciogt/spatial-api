@@ -5,8 +5,11 @@ python:
   - "3.7"
 addons:
   homebrew:
+    update: true
     packages:
-    - geos
+      - geos
+      - gdal
+      - proj
 services:
   - docker
 install:
