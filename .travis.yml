@@ -3,6 +3,10 @@ language: python
 python:
   - "3.6"
   - "3.7"
+addons:
+  homebrew:
+    packages:
+    - geos
 services:
   - docker
 install:
@@ -11,4 +15,4 @@ before_script:
   - docker-compose up
   - cd backend
 script:
-  - backend/manage.py test
+  - python manage.py test
