@@ -17,7 +17,8 @@ services:
 install:
   - pip install -r requirements.txt
 before_script:
-  - docker-compose up
+  - sudo service postgresql stop
+  - docker-compose up --build
   - cd backend
 script:
   - python manage.py test
