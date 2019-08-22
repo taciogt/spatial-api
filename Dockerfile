@@ -3,7 +3,9 @@ ENV PYTHONUNBUFFERED 1
 ARG DEBIAN_FRONTEND=noninteractive
 
 RUN apt-get update && \
-    apt-get install -qq binutils libproj-dev gdal-bin
+    apt-get install -qq binutils libproj-dev gdal-bin && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
 
 RUN mkdir /code
 WORKDIR /code
