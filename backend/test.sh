@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 
-sleep 10
+./manage.py wait_database
 ./manage.py test
