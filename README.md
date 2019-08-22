@@ -94,12 +94,12 @@ Http Status Code: 204
 ## Assumptions
 To develop this test, I made some assumptions about the business rules. 
 If some of them are false, there are unit tests that facilitate refactorings.   
-  * The point of sale coverage area will always be a Multipolygon
+*   The point of sale coverage area will always be a Multipolygon
 *   The point of sale address will always be a point.
-*  The JSON available as initial data for the system only contains Multipolygons with one polygon.
-* Apenas os caracteres númericos do CNPJ são relevantes, os outros são apenas uma máscara
-* In the point of sale document, only numeric characters are relevant. Characters such as "/" or "-" are considered as visualization mask. 
-* The point of sale document won't have more than 25 characters. 
+*   The JSON available as initial data for the system only contains Multipolygons with one polygon.
+*   Apenas os caracteres númericos do CNPJ são relevantes, os outros são apenas uma máscara
+*   In the point of sale document, only numeric characters are relevant. Characters such as "/" or "-" are considered as visualization mask. 
+*   The point of sale document won't have more than 25 characters. 
 
 
 
