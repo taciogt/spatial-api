@@ -1,29 +1,3 @@
-#version: '3'
-#services:
-#  wordpress:
-#    image: wordpress
-#    ports:
-#      - "80:80"
-#    links:
-#      - mysql
-#    logging:
-#      driver: awslogs
-#      options:
-#        awslogs-group: tutorial-wordpress
-#        awslogs-region: us-east-1
-#        awslogs-stream-prefix: wordpress
-#  mysql:
-#    image: mysql:5.7
-#    environment:
-#      MYSQL_ROOT_PASSWORD: password
-#    logging:
-#      driver: awslogs
-#      options:
-#        awslogs-group: tutorial-mysql
-#        awslogs-region: us-east-1
-#        awslogs-stream-prefix: mysql
-
-
 version: "3"
 services:
   webapp:
@@ -32,7 +6,6 @@ services:
     image: taciogt/spatial-api
     working_dir: /code
     command: ["./run_development_server.sh"]
-#    command: ["ls"]
 #    volumes:
 #      - .:/code
     links:
@@ -41,12 +14,6 @@ services:
       - 80:8000
     depends_on:
       - database
-#    logging:
-#      driver: awslogs
-#      options:
-#        awslogs-group: spatial-app_webapp
-#        awslogs-region: us-east-1
-#        awslogs-stream-prefix: webapp
   database:
     container_name: "spatial_db"
     image: kartoza/postgis:9.6-2.4
@@ -56,9 +23,3 @@ services:
       - POSTGRES_USER=user001
       - POSTGRES_PASS=123456789
       - POSTGRES_DBNAME=gis
-#    logging:
-#      driver: awslogs
-#      options:
-#        awslogs-group: spatial-app_database
-#        awslogs-region: us-east-1
-#        awslogs-stream-prefix: database
