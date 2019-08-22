@@ -14,7 +14,7 @@ The API will be available at `localhost:80`
 
 #### Local debugging
 
-To run the python server in a local, the following dependencies should be installed:
+To run the python server in the host, the following dependencies should be installed:
 
 OSX
 ```bin/bash
@@ -24,12 +24,14 @@ brew install gdal
 brew install proj
 ```
 
+There are steps necessary to prepare the system to run only the server in the host. 
+It isn't implemented because the docker allows for development without debugging. 
 
-### Endpoints
+## Endpoints
 
-#### Create PDV
+### Create PDV
 
-#### Get PDV by ID
+### Get PDV by ID
 
 URI: `/point_of_sale/<pdv-id>`
 
@@ -59,10 +61,10 @@ Http Status Code: 404
 ```
 
 
-#### Search PDV
+### Search PDV
 
 
-### Assumptions
+## Assumptions
 To develop this test, I made some assumptions about the business rules. 
 If some of them are false, there are unit tests that facilitate refactorings.   
 * The point of sale coverage area will always be a Multipolygon
@@ -77,7 +79,7 @@ If some of them are false, there are unit tests that facilitate refactorings.
 
 
 
-### Improvements:
+## Improvements:
 * The API Server allows for it be available at any host. This is a configuration set at `backend/backend/settings.py` in `ALLOWED_HOSTS = ['*']`. It should be configured with only the expected host: the local development and the server's DNS.
 * The application is running in debug mode on all environments. It should be configured by an environment variable to not run on debug mode on the cloud.
 
