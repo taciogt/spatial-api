@@ -22,6 +22,6 @@ install:
 before_script:
   - sudo service postgresql stop
   - docker-compose up --build -d
-  - cd backend
+#  - cd backend
 script:
-  - python manage.py test
+  - docker-compose exec webapp ./test.sh
