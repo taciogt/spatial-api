@@ -10,6 +10,7 @@ class PointOfSale(models.Model):
 
     def to_dict(self):
         return {
+            'id': self.id,
             'trading_name': self.trading_name,
             'owner_name': self.owner_name,
             'document': self.document,

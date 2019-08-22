@@ -4,7 +4,7 @@ from points_of_sale.views import PointsOfSaleView, NearestPointsOfSaleView
 
 
 class FloatConverter:
-    regex = '\d+(\.\d+)?'
+    regex = '-?\d+(\.\d+)?'
 
     def to_python(self, value):
         return float(value)

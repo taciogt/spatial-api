@@ -26,7 +26,8 @@ class GetPointOfSaleByIdAPI(TestCase):
         response = client.get(url)
         self.assertEqual(response.status_code, 200)
         response_data = response.json()
-        self.assertEqual(response_data, {'trading_name': 'Doe',
+        self.assertEqual(response_data, {'id': self.point_of_sale.id,
+                                         'trading_name': 'Doe',
                                          'owner_name': 'John',
                                          'document': '12345',
                                          'address': {'x': 1.0,
@@ -46,13 +47,22 @@ class GetNearestPointOfSaleAPI(TestCase):
     def setUp(self):
         pos_data = {
             'document': '1',
-            'owner_name': 'John',
-            'trading_name': 'Doe',
+            'owner_name': 'Owner 1',
+            'trading_name': 'Trading 1',
             'coverage_area': MultiPolygon(Polygon((Point(0, 0), Point(3, 0), Point(3, 3), Point(0, 3), Point(0, 0)))),
             'address': Point(1, 1)
         }
         self.point_of_sale = PointOfSale(**pos_data)
         self.point_of_sale.save()
+
+        self.point_of_sale_2 = PointOfSale(**{
+            'document': '2',
+            'owner_name': 'Owner 2',
+            'trading_name': 'Trading 2',
+            'coverage_area': MultiPolygon(Polygon((Point(0, 0), Point(-3, 0), Point(-3, -3), Point(0, -3), Point(0, 0)))),
+            'address': Point(-1, -1)
+        })
+        self.point_of_sale_2.save()
 
     def test_get_nearest_point_of_sale_using_int(self):
         client = Client()
@@ -72,6 +82,7 @@ class GetNearestPointOfSaleAPI(TestCase):
         response = client.get(url)
         self.assertEqual(response.status_code, 200)
         response_data = response.json()
+        self.assertEqual(response_data['id'], self.point_of_sale.id)
         self.assertEqual(response_data['document'], '1')
 
     def test_get_nearest_point_of_sale_without_pos_available(self):
@@ -82,6 +93,17 @@ class GetNearestPointOfSaleAPI(TestCase):
         response = client.get(url)
         self.assertEqual(response.status_code, 204)
         self.assertEqual(response.content, b'')
+
+    def test_get_nearest_point_of_sale_with_negative_coordinates(self):
+        client = Client()
+
+        url = reverse('get_nearest_point_of_sale', kwargs={'lat': -2, 'long': -1})
+
+        response = client.get(url)
+        self.assertEqual(response.status_code, 200)
+        response_data = response.json()
+        self.assertEqual(response_data['id'], self.point_of_sale_2.id)
+        self.assertEqual(response_data['document'], '2')
 
 
 class CreatePointOfSaleAPI(TestCase):

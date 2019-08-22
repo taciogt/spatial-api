@@ -60,8 +60,37 @@ Response:
 Http Status Code: 404
 ```
 
-
 ### Search PDV
+
+URI: `/point_of_sale/nearest/<latitude>/<longitude>`
+
+
+
+Example of a valid request:
+```json
+Request URI: /point_of_sale/nearest/-43.297337/-23.013538
+
+Response:
+{
+    "id": 1,
+    "trading_name": "Adega Osasco",
+    "owner_name": "Ze da Ambev",
+    "document": "02453716000170",
+    "address": {
+        "x": -43.297337,
+        "y": -23.013538
+    }
+}
+Http Status Code: 200
+```
+
+Example of a request for a point without coverage:
+```json
+Request URI: /point_of_sale/99999
+
+Response is empty
+Http Status Code: 204 
+```
 
 
 ## Assumptions
