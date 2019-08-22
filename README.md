@@ -85,12 +85,11 @@ Http Status Code: 200
 
 Example of a request for a point without coverage:
 ```json
-Request URI: /point_of_sale/99999
+Request URI: /point_of_sale/nearest/19/13
 
 Response is empty
 Http Status Code: 204 
 ```
-
 
 ## Assumptions
 To develop this test, I made some assumptions about the business rules. 
