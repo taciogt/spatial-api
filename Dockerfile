@@ -7,7 +7,7 @@ RUN apt-get update && \
 
 RUN mkdir /code
 WORKDIR /code
-ADD requirements.txt /code/
+COPY requirements.txt /code/
 RUN pip install -r requirements.txt
-ADD ./backend /code/
+COPY ./backend /code/
 #ADD ./run_local_server.sh /code/
