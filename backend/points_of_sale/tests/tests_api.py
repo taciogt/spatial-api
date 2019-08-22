@@ -54,8 +54,6 @@ class GetNearestPointOfSaleAPI(TestCase):
         self.point_of_sale = PointOfSale(**pos_data)
         self.point_of_sale.save()
 
-        self.fail()
-
     def test_get_nearest_point_of_sale_using_int(self):
         client = Client()
 

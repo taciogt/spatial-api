@@ -1,16 +1,12 @@
 #os: osx
-language: python
-python:
-  - "3.6"
-  - "3.7"
+#language: python
+#python:
+#  - "3.6"
 addons:
   apt:
     sources:
       - sourceline: 'ppa:ubuntugis/ppa'
     packages:
-#    - geos
-#    - gdal
-#    - proj
     - binutils
     - libproj-dev
     - gdal-bin

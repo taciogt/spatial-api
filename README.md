@@ -1,5 +1,7 @@
 # Spatial Api
 
+[![Build Status](https://travis-ci.com/taciogt/spatial-api.svg?branch=master)](https://travis-ci.com/taciogt/spatial-api)
+
 Hipóteses assumidas:
 * Área de cobertura sempre será um multipolígono
 * Endereço sempre será um ponto
