@@ -63,8 +63,6 @@ Http Status Code: 404
 
 URI: `/point_of_sale/nearest/<latitude>/<longitude>`
 
-
-
 Example of a valid request:
 ```json
 Request URI: /point_of_sale/nearest/-43.297337/-23.013538
@@ -101,17 +99,12 @@ If some of them are false, there are unit tests that facilitate refactorings.
 *   In the point of sale document, only numeric characters are relevant. Characters such as "/" or "-" are considered as visualization mask. 
 *   The point of sale document won't have more than 25 characters. 
 
-
-
-
-
-
-## Improvements:
-* The API Server allows for it be available at any host. This is a configuration set at `backend/backend/settings.py` in `ALLOWED_HOSTS = ['*']`. It should be configured with only the expected host: the local development and the server's DNS.
-* The application is running in debug mode on all environments. It should be configured by an environment variable to not run on debug mode on the cloud.
+## Improvements
+*   The API Server allows for it be available at any host. This is a configuration set at `backend/backend/settings.py` in `ALLOWED_HOSTS = ['*']`. It should be configured with only the expected host: the local development and the server's DNS.
+*   The application is running in debug mode on all environments. It should be configured by an environment variable to not run on debug mode on the cloud.
 
 
 Useful links used during development:
-* Tutorial for Django+Postgis: https://realpython.com/location-based-app-with-geodjango-tutorial/
-* https://www.techiediaries.com/django-gis-geodjango/
-* https://github.com/aws/amazon-ecs-cli/issues/318
+*   Tutorial for Django+Postgis: https://realpython.com/location-based-app-with-geodjango-tutorial/
+*   https://www.techiediaries.com/django-gis-geodjango/
+*   https://github.com/aws/amazon-ecs-cli/issues/318
