@@ -26,14 +26,15 @@ class GetPointOfSaleByIdAPI(TestCase):
         response = client.get(url)
         self.assertEqual(response.status_code, 200)
         response_data = response.json()
-        self.assertEqual(response_data, {'id': self.point_of_sale.id,
-                                         'trading_name': 'Doe',
-                                         'owner_name': 'John',
-                                         'document': '12345',
-                                         'address': '{ "type": "Point", "coordinates": [ 1.0, 0.0 ] }',
-                                         'coverage_area': '{ "type": "MultiPolygon", "coordinates": [ [ [ [ 0.0, 0.0 ],'
-                                                          ' [ 1.0, 1.0 ], [ 0.0, 2.0 ], [ 0.0, 0.0 ] ] ] ] }'
-                                         })
+        self.assertEqual(response_data, {
+            'id': self.point_of_sale.id,
+            'trading_name': 'Doe',
+            'owner_name': 'John',
+            'document': '12345',
+            'address': '{ "type": "Point", "coordinates": [ 1.0, 0.0 ] }',
+            'coverage_area': '{ "type": "MultiPolygon", "coordinates": [ [ [ [ 0.0, 0.0 ], [ 1.0, 1.0 ], [ 0.0, 2.0 ],'
+                             ' [ 0.0, 0.0 ] ] ] ] }'
+        })
 
     def test_get_point_of_sale_by_invalid_id(self):
         client = Client()
@@ -123,10 +124,29 @@ class CreatePointOfSaleAPI(TestCase):
 
     def test_get_nearest_point_of_sale_using_int(self):
         client = Client()
+        url = reverse('create_point_of_sale')
 
-        url = reverse('get_nearest_point_of_sale', kwargs={'lat': 1, 'long': 1})
+        data = {
+            'tradingName': 'Bar One',
+            'ownerName': 'Bar Owner ',
+            'document': '122333',
+            'address': '{ "type": "Point", "coordinates": [ 0.0, 2.0 ] }',
+            'coverageArea': '{ "type": "MultiPolygon", "coordinates": [ [ [ [ 0.0, 0.0 ], [ 0.0, 3.0 ], [ 0.0, 6.0 ], '
+                            '[ 0.0, 0.0 ] ] ] ] }'
+        }
 
-        response = client.get(url)
+        # Act
+        response = client.post(url, data=data)
+
+        # Assert Response
         self.assertEqual(response.status_code, 200)
         response_data = response.json()
-        self.assertEqual(response_data['document'], '1')
+        self.assertIsNotNone(response_data['id'])
+        self.assertEqual(response_data['document'], '122333')
+
+        # Assert saved data
+        point_of_sale = PointOfSale.objects.get(id=response_data['id'])
+        self.assertEqual(point_of_sale.owner_name, data['ownerName'])
+        self.assertEqual(point_of_sale.trading_name, data['tradingName'])
+        self.assertEqual(point_of_sale.address.json, data['address'])
+        self.assertEqual(point_of_sale.coverage_area.json, data['coverageArea'])

@@ -18,6 +18,7 @@ register_converter(FloatConverter, 'float')
 
 urlpatterns = [
     path('point_of_sale/<int:pk>', PointsOfSaleView.as_view(), name='get_point_of_sale_by_id'),
+    path('point_of_sale', PointsOfSaleView.as_view(), name='create_point_of_sale'),
     path('point_of_sale/nearest/<float:lat>/<float:long>', NearestPointsOfSaleView.as_view(),
          name='get_nearest_point_of_sale')
 ]

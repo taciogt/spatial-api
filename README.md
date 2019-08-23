@@ -30,6 +30,22 @@ It isn't implemented because the docker allows for development without debugging
 
 ### Create PDV
 
+URI: `/point_of_sale`
+
+Example of a valid request:
+```json
+Request URI: /point_of_sale
+
+Response:
+{ 'tradingName': 'Bar One',
+  'ownerName': 'Bar Owner ',
+  'document': '122333',
+  'address': '{ "type": "Point", "coordinates": [ 0.0, 2.0 ] }',
+  'coverageArea': '{ "type": "MultiPolygon", "coordinates": [ [ [ [ 0.0, 0.0 ], [ 0.0, 3.0 ], [ 0.0, 6.0 ], [ 0.0, 0.0 ] ] ] ] }'
+}
+Http Status Code: 200
+```
+
 ### Get PDV by ID
 
 URI: `/point_of_sale/<pdv-id>`
@@ -99,6 +115,9 @@ If some of them are false, there are unit tests that facilitate refactorings.
 ## Improvements
 *   The API Server allows for it be available at any host. This is a configuration set at `backend/backend/settings.py` in `ALLOWED_HOSTS = ['*']`. It should be configured with only the expected host: the local development and the server's DNS.
 *   The application is running in debug mode on all environments. It should be configured by an environment variable to not run on debug mode on the cloud.
+*   The CSRF protection was disabled to simplify the API. It should be correctly implemented to send to production.
+*   Validate de document number (check if it is a valid CNPJ)
+*   Generate a coverage report for the unit tests running on Travis. This report can be sent to Codacy with a badge showing the coverage percentage.
 
 
 Useful links used during development:
