@@ -7,7 +7,7 @@ services:
     working_dir: /code
     command: ["./run_development_server.sh"]
 #    volumes:
-#      - .:/code
+#      - .backend:/code
     links:
       - database
     ports:

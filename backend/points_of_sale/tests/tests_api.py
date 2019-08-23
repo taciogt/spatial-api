@@ -30,8 +30,10 @@ class GetPointOfSaleByIdAPI(TestCase):
                                          'trading_name': 'Doe',
                                          'owner_name': 'John',
                                          'document': '12345',
-                                         'address': {'x': 1.0,
-                                                     'y': 0.0}})
+                                         'address': '{ "type": "Point", "coordinates": [ 1.0, 0.0 ] }',
+                                         'coverage_area': '{ "type": "MultiPolygon", "coordinates": [ [ [ [ 0.0, 0.0 ],'
+                                                          ' [ 1.0, 1.0 ], [ 0.0, 2.0 ], [ 0.0, 0.0 ] ] ] ] }'
+                                         })
 
     def test_get_point_of_sale_by_invalid_id(self):
         client = Client()
@@ -59,7 +61,8 @@ class GetNearestPointOfSaleAPI(TestCase):
             'document': '2',
             'owner_name': 'Owner 2',
             'trading_name': 'Trading 2',
-            'coverage_area': MultiPolygon(Polygon((Point(0, 0), Point(-3, 0), Point(-3, -3), Point(0, -3), Point(0, 0)))),
+            'coverage_area': MultiPolygon(
+                Polygon((Point(0, 0), Point(-3, 0), Point(-3, -3), Point(0, -3), Point(0, 0)))),
             'address': Point(-1, -1)
         })
         self.point_of_sale_2.save()
