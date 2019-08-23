@@ -37,11 +37,11 @@ Example of a valid request:
 Request URI: /point_of_sale
 
 Response:
-{ 'tradingName': 'Bar One',
-  'ownerName': 'Bar Owner ',
-  'document': '122333',
-  'address': '{ "type": "Point", "coordinates": [ 0.0, 2.0 ] }',
-  'coverageArea': '{ "type": "MultiPolygon", "coordinates": [ [ [ [ 0.0, 0.0 ], [ 0.0, 3.0 ], [ 0.0, 6.0 ], [ 0.0, 0.0 ] ] ] ] }'
+{ "tradingName": "Bar One",
+  "ownerName": "Bar Owner",
+  "document": "122333",
+  "address": "{ \"type\": \"Point\", \"coordinates\": [ 0.0, 2.0 ] }",
+  "coverageArea": "{ \"type\": \"MultiPolygon\", \"coordinates\": [ [ [ [ 0.0, 0.0 ], [ 0.0, 3.0 ], [ 0.0, 6.0 ], [ 0.0, 0.0 ] ] ] ] }"
 }
 Http Status Code: 200
 ```
