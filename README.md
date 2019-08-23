@@ -102,6 +102,14 @@ Response is empty
 Http Status Code: 204 
 ```
 
+## Deploy
+
+Create a KeyPair in AWS with the name `spatial-app`
+
+Export the variables `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY`
+
+Run the script `./deploy.sh`.
+
 ## Assumptions
 To develop this test, I made some assumptions about the business rules. 
 If some of them are false, there are unit tests that facilitate refactorings.   
@@ -115,9 +123,11 @@ If some of them are false, there are unit tests that facilitate refactorings.
 ## Improvements
 *   The API Server allows for it be available at any host. This is a configuration set at `backend/backend/settings.py` in `ALLOWED_HOSTS = ['*']`. It should be configured with only the expected host: the local development and the server's DNS.
 *   The application is running in debug mode on all environments. It should be configured by an environment variable to not run on debug mode on the cloud.
-*   The CSRF protection was disabled to simplify the API. It should be correctly implemented to send to production.
+*   The CSRF protection was disabled to simplify the API development. It should be correctly implemented to send to production.
 *   Validate de document number (check if it is a valid CNPJ)
 *   Generate a coverage report for the unit tests running on Travis. This report can be sent to Codacy with a badge showing the coverage percentage.
+*   The database should run in a service like RDS because it handles better data persistence and availability. It would require some extra work to get the same reliability in a service like ECS.
+*   Implement a blue/green strategy for production deployments.
 
 
 Useful links used during development:
