@@ -1,7 +1,6 @@
 import json
 import os
 
-from django.contrib.gis.geos import Polygon, MultiPolygon, Point
 from django.db import connection
 from django.db import migrations
 
@@ -18,17 +17,16 @@ def load_initial_data(apps, _):
         data = json.load(file_data)
         for pos_data in data['pdvs']:
             document = ''.join([char for char in pos_data['document'] if char.isnumeric()])
-            address_point = Point(pos_data['address']['coordinates'])
-            coverage_points = [Point(x, y) for x, y in pos_data['coverageArea']['coordinates'][0][0]]
-            coverage_multipolygon = MultiPolygon(Polygon(coverage_points))
+            address = json.dumps(pos_data['address'])
+            coverage_area = json.dumps(pos_data['coverageArea'])
 
             new_pos_data = {
                 'id': pos_data['id'],
                 'document': document,
                 'trading_name': pos_data['tradingName'],
                 'owner_name': pos_data['ownerName'],
-                'address': address_point,
-                'coverage_area': coverage_multipolygon,
+                'address': address,
+                'coverage_area': coverage_area,
             }
             point_of_sale, _ = PointOfSale.objects.get_or_create(**new_pos_data)
             point_of_sale.save()
